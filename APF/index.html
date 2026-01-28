@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cronograma Al Patio Fest 2</title>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --text-color: #ffffff;
+            --subtext-color: #cccccc;
+            --card-bg-transparent: rgba(30, 30, 30, 0.85); 
+            --yellow: #FFD700;
+            --orange: #FF8C00;
+            --red: #DC143C;
+            --grey: #808080;
+            --accent: #ffffff;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-image: url('https://i.postimg.cc/prM6ht71/asas.png');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            background-color: #121212;
+            color: var(--text-color);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 600px;
+            width: 100%;
+            background: rgba(15, 15, 15, 0.80); 
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.9);
+            border: 1px solid rgba(255, 215, 0, 0.15);
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+            padding-bottom: 20px;
+        }
+
+        h1 {
+            font-family: 'Anton', sans-serif;
+            font-size: 3rem;
+            margin: 0;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #ffffff;
+            text-shadow: 0 4px 8px rgba(0,0,0,0.8);
+        }
+
+        .date {
+            font-size: 1.2rem;
+            color: var(--yellow);
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-top: 10px;
+            letter-spacing: 1px;
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.6);
+        }
+
+        /* Estilos de las tarjetas */
+        .event-card {
+            background-color: var(--card-bg-transparent);
+            margin-bottom: 15px;
+            padding: 15px 20px;
+            border-radius: 12px;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow: hidden;
+            border-left: 6px solid var(--grey);
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.5);
+            border: 1px solid rgba(255,255,255,0.05);
+            cursor: pointer; /* Indica que toda la tarjeta es clickeable */
+        }
+
+        .event-card:hover {
+            transform: translateY(-3px);
+            background-color: rgba(60, 60, 60, 0.95);
+            border-color: rgba(255, 215, 0, 0.3);
+        }
+
+        .time {
+            font-family: 'Anton', sans-serif;
+            font-size: 1.4rem;
+            color: var(--accent);
+            margin-bottom: 5px;
+        }
+
+        .title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 5px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .desc {
+            font-size: 0.9rem;
+            color: var(--subtext-color);
+        }
+
+        /* Modificación para que el enlace cubra todo */
+        a.band-link {
+            text-decoration: none;
+            color: inherit;
+            display: block; /* Ocupa todo el contenedor */
+        }
+
+        a.band-link:hover .title {
+            color: var(--yellow);
+            text-shadow: 0 0 8px rgba(255, 215, 0, 0.8);
+        }
+
+        .insta-icon {
+            width: 18px;
+            height: 18px;
+            fill: currentColor;
+            opacity: 0.8;
+        }
+
+        /* Colores de bloque */
+        .block-yellow { border-left-color: var(--yellow); }
+        .block-orange { border-left-color: var(--orange); }
+        .block-red { border-left-color: var(--red); }
+        .block-dark { border-left-color: #ffffff; }
+        
+        .change-card {
+            background-color: rgba(0, 0, 0, 0.5);
+            border: 1px dashed rgba(255, 255, 255, 0.2);
+            padding: 10px 20px;
+            border-left: none;
+            margin-bottom: 15px;
+            border-radius: 8px;
+        }
+        .change-card .time { font-size: 1rem; color: #aaaaaa; }
+        .change-card .title { font-size: 1rem; color: #cccccc; }
+
+        .block-label {
+            margin-top: 30px;
+            margin-bottom: 10px;
+            font-size: 0.85rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: inline-block;
+            padding: 5px 12px;
+            border-radius: 20px;
+            color: #121212;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+        }
+
+        .label-yellow { background-color: var(--yellow); }
+        .label-orange { background-color: var(--orange); }
+        .label-red { background-color: var(--red); }
+        .label-dark { background-color: #ffffff; }
+
+        .footer {
+            text-align: center;
+            margin-top: 50px;
+            margin-bottom: 10px;
+            font-size: 1.6rem;
+            font-family: 'Anton', sans-serif;
+            color: var(--yellow); 
+            text-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
+            letter-spacing: 1px;
+            border-top: 1px solid rgba(255, 215, 0, 0.3);
+            padding-top: 30px;
+        }
+    </style>
+</head>
+<body>
+
+    <svg style="display: none;">
+        <symbol id="icon-instagram" viewBox="0 0 24 24">
+            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+        </symbol>
+    </svg>
+
+    <div class="container">
+        <header>
+            <h1>AL PATIO FEST 2</h1>
+            <div class="date">Sábado, 31 de Enero</div>
+        </header>
+
+        <div class="event-card">
+            <div class="time">04:00 PM</div>
+            <div class="title">🚪 OPEN DOORS</div>
+            <div class="desc">Ingreso, Música Ambiente y Venta de Bebidas/Comida.</div>
+        </div>
+
+        <div class="change-card">
+            <div class="time">04:45 PM</div>
+            <div class="title">Line-check / Montaje KORMENANT</div>
+        </div>
+
+        <div class="block-label label-yellow">🟡 Bloque 1</div>
+        <a href="https://www.instagram.com/kormenant?igsh=MThkeWp5OXFteHZlYw==" target="_blank" class="band-link">
+            <div class="event-card block-yellow">
+                <div class="time">05:00 PM - 05:45 PM</div>
+                <div class="title">
+                    KORMENANT 
+                    <svg class="insta-icon"><use href="#icon-instagram"/></svg>
+                </div>
+                <div class="desc">Show de 45 minutos</div>
+            </div>
+        </a>
+
+        <div class="change-card">
+            <div class="time">05:45 PM</div>
+            <div class="title">⚙️ Cambio de banda (15 min)</div>
+        </div>
+
+        <div class="block-label label-orange">🟠 Bloque 2: Solista & Banda</div>
+        
+        <a href="https://www.instagram.com/ozzymevas?igsh=b3R3eXIzd3IzNGd6" target="_blank" class="band-link">
+            <div class="event-card block-orange">
+                <div class="time">06:00 PM - 06:30 PM</div>
+                <div class="title">
+                    OZZY / MEVAS
+                    <svg class="insta-icon"><use href="#icon-instagram"/></svg>
+                </div>
+                <div class="desc">Show de 30 minutos</div>
+            </div>
+        </a>
+
+        <a href="https://www.instagram.com/21_idiots_ec?igsh=b2E4MTkxZGcyazU0" target="_blank" class="band-link">
+            <div class="event-card block-orange">
+                <div class="time">06:30 PM - 07:00 PM</div>
+                <div class="title">
+                    21 IDIOTS
+                    <svg class="insta-icon"><use href="#icon-instagram"/></svg>
+                </div>
+                <div class="desc">Show de 30 minutos</div>
+            </div>
+        </a>
+
+        <div class="change-card">
+            <div class="time">07:00 PM</div>
+            <div class="title">⚙️ Cambio de banda (10 min)</div>
+        </div>
+
+        <div class="block-label label-red">🔴 Bloque 3</div>
+        <a href="https://www.instagram.com/pilares_de_astra?igsh=MWRjaXY3aWg5czFkcQ==" target="_blank" class="band-link">
+            <div class="event-card block-red">
+                <div class="time">07:10 PM - 07:55 PM</div>
+                <div class="title">
+                    PILARES DE ASTRA
+                    <svg class="insta-icon"><use href="#icon-instagram"/></svg>
+                </div>
+                <div class="desc">Show de 45 minutos</div>
+            </div>
+        </a>
+
+        <div class="change-card">
+            <div class="time">07:55 PM</div>
+            <div class="title">⚙️ Cambio de banda (15 min)</div>
+        </div>
+
+        <div class="block-label label-dark">⚫ Bloque 4: Cierre</div>
+        <a href="https://www.instagram.com/voragine.ec?igsh=eWloNTR0b2kwcHZi" target="_blank" class="band-link">
+            <div class="event-card block-dark">
+                <div class="time">08:10 PM - 08:55 PM</div>
+                <div class="title">
+                    VORÁGINE
+                    <svg class="insta-icon"><use href="#icon-instagram"/></svg>
+                </div>
+                <div class="desc">Show de cierre (45 minutos)</div>
+            </div>
+        </a>
+
+        <div class="footer">
+            🏁 9:30 PM FIN DEL EVENTO
+        </div>
+    </div>
+
+</body>
+</html>
